@@ -10,7 +10,7 @@ if(!empty($_POST)){
 	$ciudad = $_POST["ciudad"];
 	$empresa = $_POST["empresa"];
 	$ip = getIp();
-	$url = $_POST["url"];
+	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 	$sql = "";
 	$sql .= "INSERT INTO wp_data_storage (nombre, email, telefono, ciudad, empresa, ip, url)";
