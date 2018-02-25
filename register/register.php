@@ -9,7 +9,7 @@ if(!empty($_POST)){
 	$telefono = $_POST["telefono"];
 	$ciudad = $_POST["ciudad"];
 	$empresa = $_POST["empresa"];
-	$ip = $_POST["ip"];
+	$ip = getIp();
 	$url = $_POST["url"];
 
 	$sql = "";
@@ -27,6 +27,23 @@ if(!empty($_POST)){
 		'ip' => $ip,
 		'url' => $url
 	]);
+}
+
+
+function getIP(){
+    if (isset($_SERVER["HTTP_CLIENT_IP"])){
+        return $_SERVER["HTTP_CLIENT_IP"];
+    }else if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+        return $_SERVER["HTTP_X_FORWARDED_FOR"];
+    }else if (isset($_SERVER["HTTP_X_FORWARDED"])){
+        return $_SERVER["HTTP_X_FORWARDED"];
+    }else if (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+        return $_SERVER["HTTP_FORWARDED_FOR"];
+    }else if (isset($_SERVER["HTTP_FORWARDED"])){
+        return $_SERVER["HTTP_FORWARDED"];
+    }else{
+        return $_SERVER["REMOTE_ADDR"];
+    }
 }
 
 header("Location: index.html")
